@@ -28,7 +28,7 @@ public class Activity2 {
 	@Test
 	public void imageURL() {
 		WebElement logo = driver.findElement(By.id("divLogo"));
-		Assert.assertNotNull(logo, "Logo is NOT displayed");
+		Assert.assertNotNull(logo.isDisplayed(), "Logo is NOT displayed");
 	}
 	
 	@AfterClass
