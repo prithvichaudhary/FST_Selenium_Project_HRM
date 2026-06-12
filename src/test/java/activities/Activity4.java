@@ -47,7 +47,7 @@ public class Activity4 {
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("btnLogin"))).click();
 
 		String str = driver.findElement(By.id("welcome")).getText();
-		Assert.assertEquals(str, "Welcome orange");
+		Assert.assertEquals(str, "Welcome Admin");
 	}
 
 	@Test(dependsOnMethods = { "validateLogin" })
