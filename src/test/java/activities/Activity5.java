@@ -19,7 +19,7 @@ public class Activity5 {
 	WebDriver driver;
 
 	WebDriverWait wait;
-
+    
 	@BeforeClass()
 	public void setUp() {
 		driver = new FirefoxDriver();
@@ -33,18 +33,29 @@ public class Activity5 {
 		driver.findElement(By.id("txtUsername")).sendKeys("orange");
 		driver.findElement(By.id("txtPassword")).sendKeys("5Nx#I6BK%r3$8vz0ch");
 		driver.findElement(By.id("btnLogin")).click();
-		// assertEquals(driver.getTitle(),"OrangeHRM");
+		//check if on dashboard page
+		// Waiting for Welcome Pannel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("welcome")));
+
+		// Assert confirming login
+		WebElement welcomeMessage = driver.findElement(By.className("panelTrigger"));
+
+		// Get text of that Web Element
+		String message = welcomeMessage.getText();
+
+		Assert.assertTrue(message.contains("Welcome"));
 	}
 
 	@Test(priority = 2)
 	public void openMyInfo() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.findElement(By.id("menu_pim_viewMyDetails")).click();
 		wait.until(ExpectedConditions.urlContains("viewMyDetails"));
 		Assert.assertTrue(driver.getCurrentUrl().contains("viewMyDetails"));
 	}
 
 	@Test(priority = 3)
-	public void openMyIknfo() {
+	public void editPersonalInfo() {
 
 		driver.findElement(By.id("btnSave")).click();
 		WebElement ftName = driver.findElement(By.id("personal_txtEmpFirstName"));
