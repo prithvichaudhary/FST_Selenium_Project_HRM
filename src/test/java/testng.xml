@@ -10,8 +10,11 @@
   		<class name= "activities.Activity1" />
   		<class name= "activities.Activity2" />
   		<class name= "activities.Activity3" />
+      <class name= "activities.Activity4" />
   		<class name= "activities.Activity5" />
   		<class name= "activities.Activity6" />
+      <class name= "activities.Activity7" />
+  		<class name= "activities.Activity8" />
   		 <class name= "activities.Activity9" />
   	</classes>
     
