@@ -60,16 +60,20 @@ public class Activity9 {
 
 	@Test(dependsOnMethods = "login")
 	public void navigateToMyInfo() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		WebElement myInfo = wait.until(ExpectedConditions.elementToBeClickable(By.id("menu_pim_viewMyDetails")));
 		myInfo.click();
-		WebElement myInfoContainer = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("pdMainContainer")));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		WebElement myInfoContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pdMainContainer")));
 		Assert.assertTrue(myInfoContainer.isDisplayed(), "Navigation to My Info failed");
 	}
 
 	@Test(dependsOnMethods = "navigateToMyInfo")
 	public void navigateToEmergencyContact() {
-		driver.findElement(By.linkText("Emergency Contacts")).click();
+		WebElement emergencyTab = wait.until(
+			    ExpectedConditions.elementToBeClickable(By.linkText("Emergency Contacts"))
+			);
+			emergencyTab.click();
 		WebElement EmergencyCont = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("listEmegrencyContact")));
 		Assert.assertTrue(EmergencyCont.isDisplayed(), "Emergency Contact section is not visible");
 	}
@@ -85,7 +89,7 @@ public class Activity9 {
 		}
 	}
 
-	@Test(dependsOnMethods = "navigateToEmergencyContact", dataProvider = "contactData", dataProviderClass = DataClass.class, enabled = false)
+	@Test(dependsOnMethods = "navigateToEmergencyContact", dataProvider = "contactData", dataProviderClass = DataClass.class, enabled = true)
 	public void addEmergencyContactDetails(String name, String relation, String home, String mobile, String work) {
 		// Click add button
 		WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnAddContact")));

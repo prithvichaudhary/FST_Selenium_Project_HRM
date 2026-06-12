@@ -25,7 +25,7 @@ public class Activity5 {
 		driver = new FirefoxDriver();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		driver.get("http://hrm.local:3050/");
-		// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
 	@Test(priority = 1)
@@ -49,8 +49,9 @@ public class Activity5 {
 	@Test(priority = 2)
 	public void openMyInfo() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.findElement(By.id("menu_pim_viewMyDetails")).click();
-		wait.until(ExpectedConditions.urlContains("viewMyDetails"));
+		WebElement myInfo = wait.until(ExpectedConditions.elementToBeClickable(By.id("menu_pim_viewMyDetails")));
+		myInfo.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		Assert.assertTrue(driver.getCurrentUrl().contains("viewMyDetails"));
 	}
 

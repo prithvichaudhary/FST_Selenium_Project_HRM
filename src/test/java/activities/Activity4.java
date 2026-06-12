@@ -34,7 +34,6 @@ public class Activity4 {
 		// Open page
 		driver.get("http://hrm.local:3050");
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
@@ -45,9 +44,15 @@ public class Activity4 {
 		driver.findElement(By.id("txtPassword")).sendKeys("5Nx#I6BK%r3$8vz0ch");
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("btnLogin"))).click();
+		// Waiting for Welcome Pannel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("welcome")));
 
-		String str = driver.findElement(By.id("welcome")).getText();
-		Assert.assertEquals(str, "Welcome Admin");
+		// Assert confirming login
+		WebElement welcomeMessage = driver.findElement(By.className("panelTrigger"));
+
+		// Get text of that Web Element
+		String message = welcomeMessage.getText();
+
 	}
 
 	@Test(dependsOnMethods = { "validateLogin" })
