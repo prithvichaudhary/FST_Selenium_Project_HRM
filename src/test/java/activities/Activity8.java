@@ -66,7 +66,6 @@ public class Activity8 {
 
 		// Click Apply
 		driver.findElement(By.id("applyBtn")).click();
-		driver.findElement(By.id("applyBtn")).click();
 
 	}
 

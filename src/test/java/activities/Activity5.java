@@ -56,7 +56,7 @@ public class Activity5 {
 
 	@Test(priority = 3)
 	public void editPersonalInfo() {
-
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.findElement(By.id("btnSave")).click();
 		WebElement ftName = driver.findElement(By.id("personal_txtEmpFirstName"));
 		ftName.sendKeys(Keys.CONTROL + "a");

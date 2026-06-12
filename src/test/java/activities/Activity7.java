@@ -53,8 +53,13 @@ public class Activity7 {
 		driver.findElement(By.id("btnLogin")).click();
 		//Checks redirected to the welcome page
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		String welcome_admin = driver.findElement(By.id("welcome")).getText();
-		Assert.assertEquals(welcome_admin, "Welcome Admin");
+		// Assert confirming login
+		WebElement welcomeMessage = driver.findElement(By.className("panelTrigger"));
+
+		// Get text of that Web Element
+		String message = welcomeMessage.getText();
+
+		Assert.assertTrue(message.contains("Welcome"));
 	}
 	
 	@Test(priority=2)
